@@ -1,10 +1,9 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Вадим Усенко](https://up.htmlacademy.ru/javascript/27/user/1396951).
-* Наставник: `Неизвестно`.
+* Наставник: [Николай Усов](https://htmlacademy.ru/profile/id1493681).
 
 ---
-
 _Не удаляйте и не изменяйте самовольно файлы и папки:_
 _`.editorconfig`, `.eslintrc`, `.gitattributes`, `.gitignore`, `package-lock.json`, `package.json`., `.github`_
 
