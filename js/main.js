@@ -9,7 +9,7 @@ const getRandomInt = (min, max) => {
   }
 };
 
-const getlength = (checkingString, maxLength) => {
-  return checkingString.length === maxLength ? true : false;
-};
+const getlength = (checkingString, maxLength) => checkingString.length === maxLength;
 
+getRandomInt(2,90);
+getlength('fjkdhfk', 8);
