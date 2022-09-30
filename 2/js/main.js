@@ -9,7 +9,7 @@ const getRandomInt = (min, max) => {
 
 const getlength = (checkingString, maxLength) => {
   if (checkingString.length > maxLength) {
-    throw new RangeError('This string is too big.');
+    return false;
   }
   return true;
 };
