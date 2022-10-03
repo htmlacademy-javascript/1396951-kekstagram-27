@@ -1,3 +1,3 @@
-import { createMockItems } from '../js/createMockData.mjs';
+import { createMockDescriptionPhoto } from '../js/createMockData.mjs';
 
-createMockItems();
+createMockDescriptionPhoto();
