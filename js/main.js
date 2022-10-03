@@ -1,3 +1,3 @@
 import { createMockDescriptionPhoto } from '../js/createMockData.mjs';
 
-createMockDescriptionPhoto();
+console.log(createMockDescriptionPhoto());
