@@ -1,7 +1,7 @@
 import { getRandomInt } from '../js/utils.mjs';
 
 const COUNT_MOCK_ITEMS = 25;
-const MIN_VALUE = 0;
+const MIN_VALUE = 1;
 const NAMES = ['Vadim', 'Anton', 'Vasya', 'Petya', 'Irina', 'Sacha', 'Ekaterina'];
 
 const DESCRIPTION_PHOTOS = [
@@ -23,7 +23,7 @@ const COMMENTS_PHOTOS = [
 
 const createMockUrl = () => `photos/${ String(getRandomInt(MIN_VALUE, COUNT_MOCK_ITEMS)) }.jpg`;
 
-const createAvatarUrl = () => `img/avatar-${ String(getRandomInt(MIN_VALUE, COUNT_MOCK_ITEMS))}.svg`;
+const createAvatarUrl = () => `img/avatar-${ String(getRandomInt(MIN_VALUE + 1 , COUNT_MOCK_ITEMS))}.svg`;
 
 const createMessageUser = () => COMMENTS_PHOTOS[getRandomInt(MIN_VALUE, COMMENTS_PHOTOS.length)];
 

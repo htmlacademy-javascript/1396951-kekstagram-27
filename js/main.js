@@ -1,3 +1,4 @@
-import { createMockDescriptionPhoto } from '../js/createMockData.mjs';
-
-createMockDescriptionPhoto();
+import { createMockDescriptionPhoto } from './createMockData.mjs';
+import { createNewElements } from './renderElements.mjs';
+const newElements = createMockDescriptionPhoto();
+createNewElements(newElements);
