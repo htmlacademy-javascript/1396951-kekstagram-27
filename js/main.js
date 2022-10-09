@@ -4,4 +4,3 @@ import { defineListeners } from './popup.mjs';
 
 createNewElements(mockData);
 defineListeners(mockData);
-
