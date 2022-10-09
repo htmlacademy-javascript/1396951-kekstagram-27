@@ -1,4 +1,7 @@
-import { createMockDescriptionPhoto } from './createMockData.mjs';
+import { mockData } from './createMockData.mjs';
 import { createNewElements } from './renderElements.mjs';
-const newElements = createMockDescriptionPhoto();
-createNewElements(newElements);
+import { defineListeners } from './popup.mjs';
+
+createNewElements(mockData);
+defineListeners(mockData);
+
