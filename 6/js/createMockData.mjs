@@ -61,4 +61,6 @@ const createMockDescriptionPhoto = () => {
   ));
 };
 
-export {createMockDescriptionPhoto};
+const mockData = createMockDescriptionPhoto();
+
+export {mockData};
