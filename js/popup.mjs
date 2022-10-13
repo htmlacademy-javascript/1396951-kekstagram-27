@@ -1,32 +1,32 @@
 import {mockData}from './createMockData.mjs';
-import { getDataForCurrPhoto } from './getDataCurrentPhoto.mjs';
-import { changeInfoOfPhoto } from './renderingPopup.mjs';
+import { getDataForCurrentlyPhoto } from './getDataCurrentPhoto.mjs';
+import { renderPopup } from './renderingPopup.mjs';
+import { isEscapeOrClick } from './utils.mjs';
 
 const popup = document.querySelector('.big-picture ');
 const containerOfPhotos = document.querySelector('.pictures');
 const closeButton = document.querySelector('#picture-cancel');
 
-const closePopup = (evt) => {
-  if (evt.key === 'Escape' || evt.button === 0 ) {
+const onClosePopup = (evt) => {
+  if (isEscapeOrClick(evt)) {
     popup.classList.add('hidden');
-    closeButton.removeEventListener('click', closePopup);
-    document.removeEventListener('keydown', closePopup);
+    closeButton.removeEventListener('click', onClosePopup);
+    document.removeEventListener('keydown', onClosePopup);
   }
 };
 
-const openPopup = (evt) => {
+const onOpenPopup = (evt) => {
   evt.preventDefault();
-  closeButton.addEventListener('click', closePopup);
-  document.addEventListener('keydown', closePopup);
-  changeInfoOfPhoto(getDataForCurrPhoto(evt, mockData));
+  closeButton.addEventListener('click', onClosePopup);
+  document.addEventListener('keydown', onClosePopup);
+  renderPopup(getDataForCurrentlyPhoto(evt, mockData));
   popup.classList.remove('hidden');
 };
-
 
 const catchEvents = (evt, dataList) => {
   const nameElement = evt.target.tagName;
   if (nameElement !== 'IMG') { evt.preventDefault(); }
-  openPopup(evt, dataList);
+  onOpenPopup(evt, dataList);
 };
 
 const defineListeners = () => {

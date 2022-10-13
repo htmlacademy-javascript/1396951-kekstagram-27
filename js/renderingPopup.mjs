@@ -9,14 +9,33 @@ const likesCount = document.querySelector('.likes-count');
 // const avatar = wrapperComment.querySelector('.social__picture');
 
 
-const changeInfoOfPhoto = (dataOfPhoto) => {
+const renderPopup = (dataOfPhoto) => {
   photo.setAttribute('src', dataOfPhoto.url);
   describePhoto.textContent = dataOfPhoto.description;
   likesCount.textContent = dataOfPhoto.likes;
+//   changeInfoOfComments()
+  // deletedOldComments();
 };
 
-// const changeInfoOfComments = (dataOfComment) => {
+const changeInfoOfComments = (dataOfComment) => {
+  let fragment = document.createDocumentFragment();
+  const comment = document.querySelector('.social__comments').cloneNode(true);
 
-// };
+  dataOfComment.forEach(element => {
+    comment.querySelector('img').setAttribute('src',dataOfComment.avatar);
+    comment.querySelector('p').textContent = dataOfComment.message;
+    fragment.append(comment);
+    console.log(comment)
+  });
 
-export { changeInfoOfPhoto };
+
+};
+
+const deletedOldComments = () => {
+  const oldComments = document.querySelector('.social__comments');
+  if(oldComments) {
+    oldComments.remove();
+  }
+};
+
+export { renderPopup };
