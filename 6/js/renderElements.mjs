@@ -1,7 +1,7 @@
 const pictureElement = document.body.querySelector('.pictures');
 let fragment = document.createDocumentFragment();
 
-const addAtributesForElement = (bildingElement, template) => {
+const createElement = (bildingElement, template) => {
   template.querySelector('.picture').setAttribute('href', bildingElement.url);
   template.querySelector('.picture').setAttribute('data-id', bildingElement.id);
   template.querySelector('.picture__img').setAttribute('src', bildingElement.url);
@@ -10,14 +10,12 @@ const addAtributesForElement = (bildingElement, template) => {
   return template;
 };
 
-const bildDomElements = (createdElement, templateNode) => addAtributesForElement(createdElement, templateNode);
-
-const createNewElements = (elemetsList) => {
+const renderPhotos = (elemetsList) => {
   elemetsList.forEach((element) => {
     const template = document.querySelector('#picture').content.cloneNode(true);
-    fragment = bildDomElements(element, template);
+    fragment = createElement(element, template);
     pictureElement.appendChild(fragment);
   });
 };
 
-export {createNewElements};
+export {renderPhotos};

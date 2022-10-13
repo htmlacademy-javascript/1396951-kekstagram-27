@@ -50,15 +50,13 @@ const createMockComments = (countComments) => {
 
 const createMockDescriptionPhoto = () => {
   const listTemplates = createMockDataList('',COUNT_MOCK_ITEMS);
-  return listTemplates.map((el, index) => (
-    {
-      id: index,
-      url: createMockUrl(),
-      description: createDescription(),
-      likes: getRandomInt(MIN_VALUE, COUNT_MOCK_ITEMS),
-      comments: createMockComments(getRandomInt(MIN_VALUE, COMMENTS_PHOTOS.length))
-    }
-  ));
+  return Array.from(listTemplates, (el, index) => ({
+    id: index,
+    url: createMockUrl(),
+    description: createDescription(),
+    likes: getRandomInt(MIN_VALUE, COUNT_MOCK_ITEMS),
+    comments: createMockComments(getRandomInt(MIN_VALUE, COMMENTS_PHOTOS.length))
+  }));
 };
 
 const mockData = createMockDescriptionPhoto();

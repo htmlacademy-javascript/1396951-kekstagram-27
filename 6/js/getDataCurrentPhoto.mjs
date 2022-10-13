@@ -1,6 +1,6 @@
-const getDataForCurrPhoto = (evt, dataList) => {
+const getDataForCurrentlyPhoto = (evt, dataList) => {
   const idPhoto = evt.target.parentNode.dataset.id;
   return dataList[idPhoto];
 };
 
-export { getDataForCurrPhoto };
+export { getDataForCurrentlyPhoto };
