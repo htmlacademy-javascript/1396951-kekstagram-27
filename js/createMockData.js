@@ -1,7 +1,9 @@
-import { getRandomInt } from '../js/utils.mjs';
+import { getRandomInt } from './utils.js';
 
 const COUNT_MOCK_ITEMS = 25;
-const MIN_VALUE = 0;
+const COUNT_MOCK_AVATARS = 6;
+const MIN_VALUE = 1;
+const MAX_VALUE = 100;
 const NAMES = ['Vadim', 'Anton', 'Vasya', 'Petya', 'Irina', 'Sacha', 'Ekaterina'];
 
 const DESCRIPTION_PHOTOS = [
@@ -23,7 +25,7 @@ const COMMENTS_PHOTOS = [
 
 const createMockUrl = () => `photos/${ String(getRandomInt(MIN_VALUE, COUNT_MOCK_ITEMS)) }.jpg`;
 
-const createAvatarUrl = () => `img/avatar-${ String(getRandomInt(MIN_VALUE, COUNT_MOCK_ITEMS))}.svg`;
+const createAvatarUrl = () => `img/avatar-${ String(getRandomInt(MIN_VALUE, COUNT_MOCK_AVATARS))}.svg`;
 
 const createMessageUser = () => COMMENTS_PHOTOS[getRandomInt(MIN_VALUE, COMMENTS_PHOTOS.length)];
 
@@ -50,15 +52,15 @@ const createMockComments = (countComments) => {
 
 const createMockDescriptionPhoto = () => {
   const listTemplates = createMockDataList('',COUNT_MOCK_ITEMS);
-  return listTemplates.map((el, index) => (
-    {
-      id: index,
-      url: createMockUrl(),
-      description: createDescription(),
-      likes: getRandomInt(MIN_VALUE, COUNT_MOCK_ITEMS),
-      comments: createMockComments(getRandomInt(MIN_VALUE, COMMENTS_PHOTOS.length))
-    }
-  ));
+  return Array.from(listTemplates, (el, index) => ({
+    id: index,
+    url: createMockUrl(),
+    description: createDescription(),
+    likes: getRandomInt(MIN_VALUE, COUNT_MOCK_ITEMS),
+    comments: createMockComments(getRandomInt(MIN_VALUE, MAX_VALUE))
+  }));
 };
 
-export {createMockDescriptionPhoto};
+const mockData = createMockDescriptionPhoto();
+
+export {mockData};
