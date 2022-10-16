@@ -8,7 +8,6 @@ const containerOfPhotos = document.querySelector('.pictures');
 const closeButton = document.querySelector('#picture-cancel');
 const body = document.querySelector('body');
 
-
 const onClosePopup = (evt) => {
   if (isEscape(evt) || isClick(evt)) {
     popup.classList.add('hidden');

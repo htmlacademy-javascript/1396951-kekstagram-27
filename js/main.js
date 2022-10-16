@@ -1,6 +1,6 @@
-import { mockData } from './createMockData.mjs';
-import { renderPhotos } from './renderElements.mjs';
-import { defineListeners } from './popup.mjs';
+import { mockData } from './createMockData.js';
+import { renderPhotos } from './renderElements.js';
+import { defineListeners } from './popup.js';
 
 renderPhotos(mockData);
 defineListeners(mockData);
