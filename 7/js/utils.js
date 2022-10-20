@@ -8,16 +8,8 @@ const getRandomInt = (min, max) => {
 
 const checkinglength = (checkingString, maxLength) => checkingString.length > maxLength;
 
-const isEscape = (evt) => {
-  if (evt.key === 'Escape' ) {
-    return true;
-  }
-};
+const isEscape = (evt) => evt.key === 'Escape';
 
-const isClick = (evt) => {
-  if ( evt.button === 0 ) {
-    return true;
-  }
-};
+const isClick = (evt) => evt.button === 0;
 
 export {getRandomInt, checkinglength, isEscape, isClick};
