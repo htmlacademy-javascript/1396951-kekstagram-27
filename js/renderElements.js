@@ -1,5 +1,4 @@
 const pictureElement = document.body.querySelector('.pictures');
-let fragment = document.createDocumentFragment();
 
 const createElement = (bildingElement, template) => {
   const {url, id, likes} = bildingElement;
@@ -12,6 +11,7 @@ const createElement = (bildingElement, template) => {
 };
 
 const renderPhotos = (elemetsList) => {
+  let fragment = document.createDocumentFragment();
   elemetsList.forEach((element) => {
     const template = document.querySelector('#picture').content.cloneNode(true);
     fragment = createElement(element, template);
