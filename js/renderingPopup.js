@@ -4,49 +4,60 @@ const likesCount = document.querySelector('.likes-count');
 const countShowLikes = document.querySelector('.social__comment-count');
 const containerComment = document.querySelector('.social__comments');
 const loadButton = document.querySelector('.social__comments-loader');
+const firstNode = containerComment.firstElementChild;
+const MIN_COUNT_COMMENT = 5;
 
-const deletedOldComments = (comments) => {
-  if(comments) {
-    comments.forEach((el) => el.remove());
+const isShowButton = (countRendered, countAllComments) => {
+  if (countRendered === countAllComments) {
+    loadButton.classList.add('hidden');
+  } else {
+    loadButton.classList.remove('hidden');
   }
+};
+
+const clearWrapperComment = () => {
+  containerComment.replaceChildren();
+};
+
+const setAttribute = (listOfElements, fragment) => {
+  listOfElements.forEach(({avatar, message}) => {
+    const cloneElement = firstNode.cloneNode(true);
+    cloneElement.querySelector('.social__picture').setAttribute('src', avatar);
+    cloneElement.querySelector('.social__text').textContent = message;
+    fragment.append(cloneElement);
+  });
+  return fragment;
 };
 
 function wrapperMoreComments (dataOfComment) {
   return function() {
-    const countComment = document.querySelectorAll('.social__comment').length;
-
-    const pastOfComments = dataOfComment.slice(countComment, countComment + 4);
-    pastOfComments.forEach((element) => {
-      const firstNode = containerComment.firstElementChild.cloneNode(true);
-      firstNode.querySelector('img').setAttribute('src', element.avatar);
-      firstNode.querySelector('p').textContent = element.message;
-      containerComment.append(firstNode);
-    });
+    let countComment = document.querySelectorAll('.social__comment').length;
+    const nextComments = dataOfComment.slice(countComment, countComment + 5);
+    const fragment = document.createDocumentFragment();
+    containerComment.append(setAttribute(nextComments, fragment));
+    countComment = document.querySelectorAll('.social__comment').length;
     countShowLikes.innerHTML = `${countComment} из <span class="comments-count">${dataOfComment.length}</span> комментариев`;
+    isShowButton(countComment, dataOfComment.length);
   };
 }
 
 const renderComments = (dataOfComment) => {
-  const elementsComment = document.querySelectorAll('.social__comment');
-
-  for (let index = 0; index < 4; index++) {
-    const firstNode = containerComment.firstElementChild.cloneNode(true);
-    deletedOldComments(elementsComment);
-    firstNode.querySelector('img').setAttribute('src', dataOfComment[index].avatar);
-    firstNode.querySelector('p').textContent = dataOfComment[index].message;
-    containerComment.append(firstNode);
-  }
+  const fragment = document.createDocumentFragment();
+  const slicedData = dataOfComment.slice(0, MIN_COUNT_COMMENT);
+  clearWrapperComment();
+  containerComment.append(setAttribute(slicedData, fragment));
   const countComment = document.querySelectorAll('.social__comment').length;
   countShowLikes.innerHTML = `${countComment} из <span class="comments-count">${dataOfComment.length}</span> комментариев`;
+  isShowButton(countComment, dataOfComment.length);
 };
 
 const renderPopup = (dataOfPhoto) => {
-  const renderMoreComments = wrapperMoreComments(dataOfPhoto.comments);
+  const onRenderMoreComments = wrapperMoreComments(dataOfPhoto.comments);
   photo.setAttribute('src', dataOfPhoto.url);
   describePhoto.textContent = dataOfPhoto.description;
   likesCount.textContent = dataOfPhoto.likes;
   renderComments(dataOfPhoto.comments);
-  loadButton.addEventListener('click', renderMoreComments);
+  loadButton.onclick = onRenderMoreComments;
 };
 
-export { renderPopup };
+export { renderPopup, clearWrapperComment, wrapperMoreComments };
