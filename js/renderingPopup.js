@@ -7,6 +7,13 @@ const loadButton = document.querySelector('.social__comments-loader');
 const firstNode = containerComment.firstElementChild;
 const MIN_COUNT_COMMENT = 5;
 
+const isShowButton = (countRendered, countAllComments) => {
+  if (countRendered === countAllComments) {
+    loadButton.classList.add('hidden');
+  } else {
+    loadButton.classList.remove('hidden');
+  }
+};
 
 const clearWrapperComment = () => {
   containerComment.replaceChildren();
@@ -30,6 +37,7 @@ function wrapperMoreComments (dataOfComment) {
     containerComment.append(setAttribute(nextComments, fragment));
     countComment = document.querySelectorAll('.social__comment').length;
     countShowLikes.innerHTML = `${countComment} из <span class="comments-count">${dataOfComment.length}</span> комментариев`;
+    isShowButton(countComment, dataOfComment.length);
   };
 }
 
@@ -40,6 +48,7 @@ const renderComments = (dataOfComment) => {
   containerComment.append(setAttribute(slicedData, fragment));
   const countComment = document.querySelectorAll('.social__comment').length;
   countShowLikes.innerHTML = `${countComment} из <span class="comments-count">${dataOfComment.length}</span> комментариев`;
+  isShowButton(countComment, dataOfComment.length);
 };
 
 const renderPopup = (dataOfPhoto) => {
